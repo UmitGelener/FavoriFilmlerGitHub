@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @Html.Action("Navbar", "Index")
+    <meta name="viewport" content="width=device-width" />
+    <title>favori</title>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+</head>
+<body>
+    @foreach (var x in Model)
+    {
+    <div class="card">
+        <div class="container">
+            <h4><b>@x.Title</b></h4>
+            <p>@x.Director</p>
+            <p>@Html.ActionLink("Favoriden kaldır", "deletefavori", "Index", new { id = @x.ID }, new { onclick = "return confirm('Are you sure to delete?');" })</p>
+        </div>
+    </div>
+    }
+    
+</body>
+</html>
